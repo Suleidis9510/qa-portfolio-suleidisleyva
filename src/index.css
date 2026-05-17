@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light theme - Emerald/Teal QA Dashboard feel */
+  --background: oklch(0.985 0.002 180);
+  --foreground: oklch(0.205 0.015 180);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.015 180);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.015 180);
+  --primary: oklch(0.55 0.15 165);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.01 180);
+  --secondary-foreground: oklch(0.35 0.05 165);
+  --muted: oklch(0.96 0.008 180);
+  --muted-foreground: oklch(0.5 0.02 180);
+  --accent: oklch(0.92 0.03 165);
+  --accent-foreground: oklch(0.35 0.08 165);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.01 180);
+  --input: oklch(0.92 0.01 180);
+  --ring: oklch(0.55 0.15 165);
+  --radius: 0.75rem;
+  
+  /* QA specific colors */
+  --success: oklch(0.65 0.18 145);
+  --warning: oklch(0.75 0.15 85);
+  --info: oklch(0.6 0.15 235);
+  --test-pass: oklch(0.65 0.18 145);
+  --test-fail: oklch(0.55 0.2 25);
+  --code-bg: oklch(0.18 0.02 265);
+}
+
+.dark {
+  --background: oklch(0.145 0.015 180);
+  --foreground: oklch(0.96 0.005 180);
+  --card: oklch(0.19 0.015 180);
+  --card-foreground: oklch(0.96 0.005 180);
+  --popover: oklch(0.19 0.015 180);
+  --popover-foreground: oklch(0.96 0.005 180);
+  --primary: oklch(0.7 0.15 165);
+  --primary-foreground: oklch(0.15 0.02 165);
+  --secondary: oklch(0.25 0.02 180);
+  --secondary-foreground: oklch(0.9 0.01 180);
+  --muted: oklch(0.25 0.015 180);
+  --muted-foreground: oklch(0.65 0.02 180);
+  --accent: oklch(0.3 0.04 165);
+  --accent-foreground: oklch(0.9 0.02 165);
+  --destructive: oklch(0.45 0.18 25);
+  --destructive-foreground: oklch(0.95 0 0);
+  --border: oklch(0.28 0.015 180);
+  --input: oklch(0.28 0.015 180);
+  --ring: oklch(0.7 0.15 165);
+}
+
+@theme inline {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-test-pass: var(--test-pass);
+  --color-test-fail: var(--test-fail);
+  --color-code-bg: var(--code-bg);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Smooth animations */
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Device screen animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
